@@ -96,6 +96,7 @@
             // DeleteBtn
             // 
             this.DeleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteBtn.Font = new System.Drawing.Font("Trebuchet MS", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DeleteBtn.ForeColor = System.Drawing.Color.Red;
             this.DeleteBtn.Location = new System.Drawing.Point(431, 367);
             this.DeleteBtn.Name = "DeleteBtn";
@@ -108,6 +109,7 @@
             // UpdateBtn
             // 
             this.UpdateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UpdateBtn.Font = new System.Drawing.Font("Trebuchet MS", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UpdateBtn.ForeColor = System.Drawing.Color.Blue;
             this.UpdateBtn.Location = new System.Drawing.Point(431, 315);
             this.UpdateBtn.Name = "UpdateBtn";
@@ -120,6 +122,7 @@
             // SaveBtn
             // 
             this.SaveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveBtn.Font = new System.Drawing.Font("Trebuchet MS", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SaveBtn.ForeColor = System.Drawing.Color.Green;
             this.SaveBtn.Location = new System.Drawing.Point(301, 315);
             this.SaveBtn.Name = "SaveBtn";
