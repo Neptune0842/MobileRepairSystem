@@ -22,7 +22,7 @@ namespace MobileRepairSystem
 
         private void showCustomers()
         {
-            string Query = "Select * from CustomerTable";
+            string Query = "Select * from CustomerTbl";
             CustomersList.DataSource = Con.GetData(Query);
         }
 
@@ -31,6 +31,7 @@ namespace MobileRepairSystem
             CustomerNameTb.Text = "";
             CustomerPhoneTb.Text = "";
             CustomerAddressTb.Text = "";
+            key = 0;
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
@@ -47,10 +48,54 @@ namespace MobileRepairSystem
                     string CName = CustomerNameTb.Text;
                     string CPhone = CustomerPhoneTb.Text;
                     string CAdd = CustomerAddressTb.Text;
-                    string Query = "insert into  CustomerTable values ('{0}','{1}','{2}')";
+                    string Query = "insert into  CustomerTbl values ('{0}','{1}','{2}')";
                     Query = string.Format(Query, CName, CPhone, CAdd);
                     Con.SetData(Query);
                     MessageBox.Show("New Customer Added!");
+                    showCustomers();
+                    clear();
+                }
+
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }
+            }
+        }
+        int key = 0;
+        private void CustomersList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CustomerNameTb.Text = CustomersList.SelectedRows[0].Cells[1].Value.ToString();
+            CustomerPhoneTb.Text = CustomersList.SelectedRows[0].Cells[2].Value.ToString();
+            CustomerAddressTb.Text = CustomersList.SelectedRows[0].Cells[3].Value.ToString();
+
+            if (CustomerNameTb.Text == "")
+            {
+                key = 0;
+            }
+            else
+            {
+                key = Convert.ToInt32(CustomersList.SelectedRows[0].Cells[0].Value.ToString());
+            }
+        }
+
+        private void UpdateBtn_Click(object sender, EventArgs e)
+        {
+            if (CustomerNameTb.Text == "" || CustomerPhoneTb.Text == "" || CustomerAddressTb.Text == "")
+            {
+                MessageBox.Show("Missing data!!");
+            }
+            else
+            {
+                try
+                {
+                    string CName = CustomerNameTb.Text;
+                    string CPhone = CustomerPhoneTb.Text;
+                    string CAdd = CustomerAddressTb.Text;
+                    string Query = "Update  CustomerTbl set CustName = '{0}',CustPhone = '{1}',CustAdd = '{2}' where CustCode = {3}";
+                    Query = string.Format(Query, CName, CPhone, CAdd,key);
+                    Con.SetData(Query);
+                    MessageBox.Show("Customer Has Been Updated!");
                     showCustomers();
                     clear();
                 }
