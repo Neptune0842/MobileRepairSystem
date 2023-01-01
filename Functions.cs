@@ -18,7 +18,7 @@ namespace MobileRepairSystem
 
         public Functions()
         {
-            ConStr = @"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Administrator\\Documents\\MobileRepairDb.mdf;Integrated Security=True;Connect Timeout=30";
+            ConStr =@"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Administrator\\Documents\\MobileRepairDb.mdf;Integrated Security=True;Connect Timeout=30";
             Con = new SqlConnection(ConStr);
             Cmd = new SqlCommand();
             Cmd.Connection = Con;
@@ -27,22 +27,21 @@ namespace MobileRepairSystem
         public DataTable GetData(string Query)
         {
             dt = new DataTable();
-            sda = new SqlDataAdapter(Query, Con);
+            sda = new SqlDataAdapter(Query, ConStr);
             sda.Fill(dt);
             return dt;
         }
 
         public int SetData(string Query)
         {
-            int cnt = 0;
+            int Cnt = 0;
             if (Con.State == ConnectionState.Closed)
             {
                 Con.Open();
             }
             Cmd.CommandText = Query;
-            cnt = Cmd.ExecuteNonQuery();
-            Con.Close();
-            return cnt;
+            Cnt = Cmd.ExecuteNonQuery();
+            return Cnt;
 
         }
     }
