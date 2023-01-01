@@ -21,18 +21,27 @@ namespace MobileRepairSystem
             GetCustomer();
             GetSpare();
         }
+        private void GetCost()
+        {
+            string Query = "select * from SpareTbl where Spcode = {0}";
+            Query = string.Format(Query, SpareCb.SelectedValue.ToString());
+            foreach(DataRow dr in Con.GetData(Query).Rows)
+            {
+                SpareCostTb.Text = dr["Spcost"].ToString();
+            }
+        }
         private void GetCustomer()
         {
             string Query = "Select * from CustomerTbl";
-            CustCb.DisplayMember = Con.GetData(Query).Columns["CustName"].ToString();
-            CustCb.ValueMember = Con.GetData(Query).Columns["CustCode"].ToString();
+            CustCb.DisplayMember = Con.GetData(Query).Columns["Custname"].ToString();
+            CustCb.ValueMember = Con.GetData(Query).Columns["Custcode"].ToString();
             CustCb.DataSource = Con.GetData(Query);
         }
         private void GetSpare()
         {
             string Query = "Select * from SpareTbl";
-            SpareCb.DisplayMember = Con.GetData(Query).Columns["SpName"].ToString();
-            SpareCb.ValueMember = Con.GetData(Query).Columns["SpCost"].ToString();
+            SpareCb.DisplayMember = Con.GetData(Query).Columns["Spname"].ToString();
+            SpareCb.ValueMember = Con.GetData(Query).Columns["Spcode"].ToString();
             SpareCb.DataSource = Con.GetData(Query);
         }
         private void showRepairs()
@@ -42,7 +51,7 @@ namespace MobileRepairSystem
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            if (CustCb.SelectedIndex == -1 || PhoneTb.Text == "" || DNameTb.Text == "" || DModelTb.Text == "" || ProblemTb.Text == "" || SpareCb.SelectedIndex == -1 || SpareCostTb.Text == "" || TotalTb.Text == "")
+            if (CustCb.SelectedIndex == -1 || PhoneTb.Text == "" || DNameTb.Text == "" || DModelTb.Text == "" || ProblemTb.Text == "" || SpareCb.SelectedIndex == -1 || SpareCostTb.Text == "" || SomeText.Text == "")
             {
                 MessageBox.Show("Missing data!!");
             }
@@ -50,16 +59,17 @@ namespace MobileRepairSystem
             {
                 try
                 {
-                    string RDate = RepDateTb.Value.Date.ToString();
+                    String RDate = RepDateTb.Value.Date.ToString();
                     int Customer = Convert.ToInt32(CustCb.SelectedValue.ToString());
-                    string CPhone = PhoneTb.Text;
-                    string DeviceName = DNameTb.Text;
-                    string DeviceModel = DModelTb.Text;
-                    string Problem = ProblemTb.Text;
+                    String CPhone = PhoneTb.Text;
+                    String DeviceName = DNameTb.Text;
+                    String DeviceModel = DModelTb.Text;
+                    String Problem = ProblemTb.Text;
                     int Spare = Convert.ToInt32(SpareCb.SelectedValue.ToString());
                     int Total = Convert.ToInt32(TotalTb.Text);
-                    string Query = "insert into  RepairTbl values ('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7})";
-                    Query = string.Format(Query, RDate, Customer,CPhone, DeviceName, DeviceModel, Problem, Spare, Total);
+                    int GrdTotal = Convert.ToInt32(SpareCostTb.Text) + Total;
+                    string Query = "insert into  RepairTbl values ('{0}',{1},'{2}','{3}','{4}','{5}',{6},{7})";
+                    Query = string.Format(Query, RDate, Customer,CPhone, DeviceName, DeviceModel, Problem, Spare, GrdTotal);
                     Con.SetData(Query);
                     MessageBox.Show("Repair Added!");
                     showRepairs();
@@ -71,6 +81,11 @@ namespace MobileRepairSystem
                     MessageBox.Show(Ex.Message);
                 }
             }
+        }
+
+        private void SpareCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetCost();
         }
     }
 }

@@ -60,8 +60,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.SpareCostTb = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.TotalTb = new System.Windows.Forms.Label();
+            this.TotalTb = new System.Windows.Forms.TextBox();
+            this.SomeText = new System.Windows.Forms.Label();
             this.RepairsList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -283,6 +283,7 @@
             this.SpareCb.Name = "SpareCb";
             this.SpareCb.Size = new System.Drawing.Size(251, 30);
             this.SpareCb.TabIndex = 37;
+            this.SpareCb.SelectedIndexChanged += new System.EventHandler(this.SpareCb_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -297,6 +298,7 @@
             // 
             // SpareCostTb
             // 
+            this.SpareCostTb.Enabled = false;
             this.SpareCostTb.Location = new System.Drawing.Point(303, 536);
             this.SpareCostTb.Name = "SpareCostTb";
             this.SpareCostTb.Size = new System.Drawing.Size(112, 26);
@@ -313,23 +315,23 @@
             this.label9.TabIndex = 38;
             this.label9.Text = "Spare Cost";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(442, 536);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(112, 26);
-            this.textBox6.TabIndex = 41;
-            // 
             // TotalTb
             // 
-            this.TotalTb.AutoSize = true;
-            this.TotalTb.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TotalTb.ForeColor = System.Drawing.Color.Black;
-            this.TotalTb.Location = new System.Drawing.Point(442, 511);
+            this.TotalTb.Location = new System.Drawing.Point(442, 536);
             this.TotalTb.Name = "TotalTb";
-            this.TotalTb.Size = new System.Drawing.Size(80, 22);
-            this.TotalTb.TabIndex = 40;
-            this.TotalTb.Text = "Total Cost";
+            this.TotalTb.Size = new System.Drawing.Size(112, 26);
+            this.TotalTb.TabIndex = 41;
+            // 
+            // SomeText
+            // 
+            this.SomeText.AutoSize = true;
+            this.SomeText.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SomeText.ForeColor = System.Drawing.Color.Black;
+            this.SomeText.Location = new System.Drawing.Point(442, 511);
+            this.SomeText.Name = "SomeText";
+            this.SomeText.Size = new System.Drawing.Size(91, 22);
+            this.SomeText.TabIndex = 40;
+            this.SomeText.Text = "Repair Cost";
             // 
             // RepairsList
             // 
@@ -389,8 +391,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1665, 931);
             this.Controls.Add(this.RepairsList);
-            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.TotalTb);
+            this.Controls.Add(this.SomeText);
             this.Controls.Add(this.SpareCostTb);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.SpareCb);
@@ -443,8 +445,8 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBox6;
-        private Label TotalTb;
+        private TextBox TotalTb;
+        private Label SomeText;
         private TextBox SpareCostTb;
         private Label label9;
         private ComboBox SpareCb;
