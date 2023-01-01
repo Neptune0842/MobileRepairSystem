@@ -18,6 +18,22 @@ namespace MobileRepairSystem
             InitializeComponent();
             Con = new Functions();
             showRepairs();
+            GetCustomer();
+            GetSpare();
+        }
+        private void GetCustomer()
+        {
+            string Query = "Select * from CustomerTbl";
+            CustCb.DisplayMember = Con.GetData(Query).Columns["CustName"].ToString();
+            CustCb.ValueMember = Con.GetData(Query).Columns["CustCode"].ToString();
+            CustCb.DataSource = Con.GetData(Query);
+        }
+        private void GetSpare()
+        {
+            string Query = "Select * from SpareTbl";
+            SpareCb.DisplayMember = Con.GetData(Query).Columns["SpName"].ToString();
+            SpareCb.ValueMember = Con.GetData(Query).Columns["SpCost"].ToString();
+            SpareCb.DataSource = Con.GetData(Query);
         }
         private void showRepairs()
         {
