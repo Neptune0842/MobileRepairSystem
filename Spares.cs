@@ -137,5 +137,12 @@ namespace MobileRepairSystem
             Obj.Show();
             this.Hide();
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Spares Obj = new Spares();
+            Obj.Show();
+            this.Hide();
+        }
     }
 }
