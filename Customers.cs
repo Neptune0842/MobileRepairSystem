@@ -151,7 +151,9 @@ namespace MobileRepairSystem
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-
+            Customers Obj = new Customers();
+            Obj.Show();
+            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
