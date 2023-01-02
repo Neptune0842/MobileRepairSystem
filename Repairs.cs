@@ -87,5 +87,36 @@ namespace MobileRepairSystem
         {
             GetCost();
         }
+        int key = 0;
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (key == 0)
+            {
+                MessageBox.Show("Select a Repair!!");
+            }
+            else
+            {
+                try
+                {
+                   
+                    string Query = "delete from RepairTbl where RepCode = {0}";
+                    Query = string.Format(Query,key);
+                    Con.SetData(Query);
+                    MessageBox.Show("Repair Deleted!");
+                    showRepairs();
+                    //clear();
+                }
+
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }
+            }
+        }
+
+        private void RepairsList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            key = Convert.ToInt32(RepairsList.SelectedRows[0].Cells[0].Value.ToString());
+        }
     }
 }
