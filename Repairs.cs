@@ -118,5 +118,12 @@ namespace MobileRepairSystem
         {
             key = Convert.ToInt32(RepairsList.SelectedRows[0].Cells[0].Value.ToString());
         }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
+        }
     }
 }

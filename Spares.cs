@@ -133,7 +133,9 @@ namespace MobileRepairSystem
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-
+            Login Obj = new Login();
+            Obj.Show();
+            this.Hide();
         }
     }
 }
